@@ -1,15 +1,9 @@
-var contexts;
-
 function onError(e) {
   console.error(e);
 }
 
 function debug(message) {
   console.debug("[Easy Container Shortcuts] " + message);
-}
-
-function onContextsQueried(newContexts) {
-  contexts = newContexts;
 }
 
 function onContainerCommand(command) {
@@ -19,12 +13,20 @@ function onContainerCommand(command) {
   }
 }
 
-function reloadContexts() {
-  return browser.contextualIdentities.query({}).then(onContextsQueried, onError);
+function getContexts() {
+  return browser.contextualIdentities.query({});
 }
 
-function openContainerTab(contextNumber) {
-  if (contextNumber > contexts.length) {
+async function openContainerTab(contextNumber) {
+  let contexts;
+  try {
+    contexts = await getContexts();
+  } catch (e) {
+    console.error(e);
+    return;
+  }
+
+  if (contextNumber > contexts.length - 1) {
     return; // no container defined for this shortcut, do nothing
   }
 
@@ -33,12 +35,5 @@ function openContainerTab(contextNumber) {
   })
 }
 
-// [CONTEXTS] make sure our context information is always up-to-date
-browser.contextualIdentities.onCreated.addListener(reloadContexts);
-browser.contextualIdentities.onUpdated.addListener(reloadContexts);
-
 // [COMMANDS] register commands
 browser.commands.onCommand.addListener(onContainerCommand);
-
-// INIT
-reloadContexts();
