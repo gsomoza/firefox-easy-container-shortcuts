@@ -22,55 +22,64 @@
   "commands": {
     "ecs-new-tab-container-1": {
       "suggested_key": {
-        "default": "Ctrl+Shift+1"
+        "default": "Ctrl+Shift+1",
+        "mac": "Alt+Shift+1"
       },
       "description": "Open a tab on the first non-default container"
     },
     "ecs-new-tab-container-2": {
       "suggested_key": {
-        "default": "Ctrl+Shift+2"
+        "default": "Ctrl+Shift+2",
+        "mac": "Alt+Shift+2"
       },
       "description": "Open a tab on the second non-default container"
     },
     "ecs-new-tab-container-3": {
       "suggested_key": {
-        "default": "Ctrl+Shift+3"
+        "default": "Ctrl+Shift+3",
+        "mac": "Alt+Shift+3"
       },
       "description": "Open a tab on the third non-default container"
     },
     "ecs-new-tab-container-4": {
       "suggested_key": {
-        "default": "Ctrl+Shift+4"
+        "default": "Ctrl+Shift+4",
+        "mac": "Alt+Shift+4"
       },
       "description": "Open a tab on the fourth non-default container"
     },
     "ecs-new-tab-container-5": {
       "suggested_key": {
-        "default": "Ctrl+Shift+5"
+        "default": "Ctrl+Shift+5",
+        "mac": "Alt+Shift+5"
       },
       "description": "Open a tab on the fifth non-default container"
     },
     "ecs-new-tab-container-6": {
       "suggested_key": {
-        "default": "Ctrl+Shift+6"
+        "default": "Ctrl+Shift+6",
+        "mac": "Alt+Shift+6"
       },
       "description": "Open a tab on the sixth non-default container"
     },
     "ecs-new-tab-container-7": {
       "suggested_key": {
-        "default": "Ctrl+Shift+7"
+        "default": "Ctrl+Shift+7",
+        "mac": "Alt+Shift+7"
       },
       "description": "Open a tab on the seventh non-default container"
     },
     "ecs-new-tab-container-8": {
       "suggested_key": {
-        "default": "Ctrl+Shift+8"
+        "default": "Ctrl+Shift+8",
+        "mac": "Alt+Shift+8"
       },
       "description": "Open a tab on the eighth non-default container"
     },
     "ecs-new-tab-container-9": {
       "suggested_key": {
-        "default": "Ctrl+Shift+9"
+        "default": "Ctrl+Shift+9",
+        "mac": "Alt+Shift+9"
       },
       "description": "Open a tab on the nineth non-default container"
     }
