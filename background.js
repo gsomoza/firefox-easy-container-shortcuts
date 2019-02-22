@@ -3,18 +3,34 @@ function onError(e) {
 }
 
 function debug(message) {
-  console.debug("[Easy Container Shortcuts] " + message);
+  console.debug(["[Easy Container Shortcuts] ", message]);
 }
 
 function onContainerCommand(command) {
+  if (command == 'ecs-new-tab-current-container') {
+    openTabInCurrentContainer();
+    return;
+  }
+
   const matches = command.match(/^ecs-new-tab-container-(\d)$/);
   if (matches.length == 2) {
     openContainerTab(parseInt(matches[1]) - 1);
+    return;
   }
 }
 
 function getContexts() {
   return browser.contextualIdentities.query({});
+}
+
+async function openTabInCurrentContainer() {
+  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
+    if (!results || results.length < 1) {
+      return; // do nothing
+    }
+    let currentTab = results[0];
+    browser.tabs.create({cookieStoreId: currentTab.cookieStoreId});
+  });
 }
 
 async function openContainerTab(contextNumber) {

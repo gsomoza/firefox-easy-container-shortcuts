@@ -20,6 +20,12 @@
     "scripts": ["background.js"]
   },
   "commands": {
+    "ecs-new-tab-current-container": {
+      "suggested_key": {
+        "default": "Alt+T"
+      },
+      "description": "Open a new tab on the current container"
+    },
     "ecs-new-tab-container-1": {
       "suggested_key": {
         "default": "Ctrl+Shift+1",
