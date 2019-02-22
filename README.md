@@ -15,4 +15,4 @@ When one of those shortcuts is pressed, a new tab will be opened using the conta
 For this to work, the `privacy.userContext.enabled` preference (the "Enable Container Tabs" checkbox in the Firefox Preferences UI) must be ENABLED in Firefox. If that preference is DISABLED then the extension will only log an error.
 
 ## License
-© 2017, Gabriel Somoza – License: 3-Clause BSD
+© 2017-2019, Gabriel Somoza – License: 3-Clause BSD
