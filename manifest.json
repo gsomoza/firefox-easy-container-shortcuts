@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Easy Container Shortcuts",
-  "version": "1.2",
+  "version": "1.3",
   "description": "Easy, opinionated, keyboard shortcuts for containers.",
   "applications": {
     "gecko": {
@@ -22,7 +22,7 @@
   "commands": {
     "ecs-new-tab-current-container": {
       "suggested_key": {
-        "default": "Alt+T"
+        "default": "Ctrl+Alt+T"
       },
       "description": "Open a new tab on the current container"
     },
