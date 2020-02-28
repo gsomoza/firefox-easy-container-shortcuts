@@ -87,7 +87,7 @@
         "default": "Ctrl+Shift+9",
         "mac": "Alt+Shift+9"
       },
-      "description": "Open a tab on the nineth non-default container"
+      "description": "Open a tab on the ninth non-default container"
     },
     "ecs-current-tab-container-1": {
       "suggested_key": {
@@ -141,7 +141,7 @@
       "suggested_key": {
         "default": "Ctrl+Alt+9"
       },
-      "description": "Reopen the current tab on the nineth non-default container"
+      "description": "Reopen the current tab on the ninth non-default container"
     }
   }
 }
