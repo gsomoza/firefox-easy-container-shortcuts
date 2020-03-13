@@ -12,15 +12,37 @@ function onContainerCommand(command) {
     return;
   }
 
-  const matches = command.match(/^ecs-new-tab-container-(\d)$/);
-  if (matches.length == 2) {
-    openContainerTab(parseInt(matches[1]) - 1);
+  const newTabMatches = command.match(/^ecs-new-tab-container-(\d)$/);
+  if (newTabMatches && newTabMatches.length == 2) {
+    openContainerTab(parseInt(newTabMatches[1]) - 1);
+    return;
+  }
+
+  const currentTabMatches = command.match(/^ecs-current-tab-container-(\d)$/);
+  if (currentTabMatches && currentTabMatches.length == 2) {
+    openTabInContainer(parseInt(currentTabMatches[1]) - 1);
     return;
   }
 }
 
 function getContexts() {
   return browser.contextualIdentities.query({});
+}
+
+async function getContextFor(contextNumber) {
+  let contexts;
+  try {
+    contexts = await getContexts();
+  } catch (e) {
+    console.error(e);
+    return;
+  }
+
+  if (contextNumber > contexts.length - 1) {
+    return; // no container defined for this shortcut, do nothing
+  }
+
+  return contexts[contextNumber];
 }
 
 async function openTabInCurrentContainer() {
@@ -34,21 +56,34 @@ async function openTabInCurrentContainer() {
 }
 
 async function openContainerTab(contextNumber) {
-  let contexts;
-  try {
-    contexts = await getContexts();
-  } catch (e) {
-    console.error(e);
+  let context = await getContextFor(contextNumber);
+  if (!context) {
     return;
   }
 
-  if (contextNumber > contexts.length - 1) {
-    return; // no container defined for this shortcut, do nothing
+  return browser.tabs.create({
+    cookieStoreId: context.cookieStoreId
+  });
+}
+
+async function openTabInContainer(contextNumber) {
+  let context = await getContextFor(contextNumber);
+  if (!context) {
+    return;
   }
 
-  return browser.tabs.create({
-    cookieStoreId: contexts[contextNumber].cookieStoreId
-  })
+  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
+    if (!results || results.length < 1) {
+      return; // do nothing
+    }
+    let currentTab = results[0];
+    browser.tabs.create({
+      cookieStoreId: context.cookieStoreId,
+      index: currentTab.index + 1,
+      url: currentTab.url
+    });
+    browser.tabs.remove(currentTab.id);
+  });
 }
 
 // [COMMANDS] register commands

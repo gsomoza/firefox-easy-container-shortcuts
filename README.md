@@ -2,6 +2,9 @@
 Firefox 57+ extension that provides nine easy keyboard shortcuts to open new tabs on different containers.
 
 ## Usage
+#### Current Tab on Specified Container
+Use `Ctrl (Cmd on Mac) + Alt + #` to reopen the current tab in the specified container, where `#` stands for numbers between 1 and 9. This closes the current tab and replaces its position with a new tab at the same URL in the specified container.
+
 #### New Tab on Current Container
 Use `Ctrl (Cmd on Mac) + Alt + T` to open a new tab in the current window, using the current container.
 

@@ -87,7 +87,61 @@
         "default": "Ctrl+Shift+9",
         "mac": "Alt+Shift+9"
       },
-      "description": "Open a tab on the nineth non-default container"
+      "description": "Open a tab on the ninth non-default container"
+    },
+    "ecs-current-tab-container-1": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+1"
+      },
+      "description": "Reopen the current tab on the first non-default container"
+    },
+    "ecs-current-tab-container-2": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+2"
+      },
+      "description": "Reopen the current tab on the second non-default container"
+    },
+    "ecs-current-tab-container-3": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+3"
+      },
+      "description": "Reopen the current tab on the third non-default container"
+    },
+    "ecs-current-tab-container-4": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+4"
+      },
+      "description": "Reopen the current tab on the fourth non-default container"
+    },
+    "ecs-current-tab-container-5": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+5"
+      },
+      "description": "Reopen the current tab on the fifth non-default container"
+    },
+    "ecs-current-tab-container-6": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+6"
+      },
+      "description": "Reopen the current tab on the sixth non-default container"
+    },
+    "ecs-current-tab-container-7": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+7"
+      },
+      "description": "Reopen the current tab on the seventh non-default container"
+    },
+    "ecs-current-tab-container-8": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+8"
+      },
+      "description": "Reopen the current tab on the eighth non-default container"
+    },
+    "ecs-current-tab-container-9": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+9"
+      },
+      "description": "Reopen the current tab on the ninth non-default container"
     }
   }
 }
