@@ -18,6 +18,9 @@ When one of those shortcuts is pressed, a new tab will be opened using the conta
 
 For this to work, the `privacy.userContext.enabled` preference (the "Enable Container Tabs" checkbox in the Firefox Preferences UI) must be ENABLED in Firefox. If that preference is DISABLED then the extension will only log an error.
 
+#### Reopen Current Tab in Default Container
+To re-open the current tab on the default container use `Ctrl (Cmd on Mac) + Alt + #`.
+
 ## Custom Shortcuts
 You can map any of the commands in this extension into other key combinations supported by Firefox - watch [this screencast](https://bug1303384.bmoattachments.org/attachment.cgi?id=9051647) to see how.
 
