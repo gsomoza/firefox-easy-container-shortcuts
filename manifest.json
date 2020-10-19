@@ -89,6 +89,12 @@
       },
       "description": "Open a tab on the ninth non-default container"
     },
+    "ecs-current-tab-container-0": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+0"
+      },
+      "description": "Reopen the current tab on the default container"
+    },
     "ecs-current-tab-container-1": {
       "suggested_key": {
         "default": "Ctrl+Alt+1"

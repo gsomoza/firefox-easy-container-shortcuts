@@ -67,7 +67,8 @@ async function openContainerTab(contextNumber) {
 }
 
 async function openTabInContainer(contextNumber) {
-  let context = await getContextFor(contextNumber);
+    let context = contextNumber !== -1 ? await getContextFor(contextNumber) : {};
+
   if (!context) {
     return;
   }
