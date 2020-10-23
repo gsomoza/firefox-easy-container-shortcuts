@@ -73,14 +73,21 @@ async function openTabInContainer(contextNumber) {
     return;
   }
 
-  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
+  browser.tabs.query({currentWindow:true, active:true, status:'complete'}).then(function(results) {
     if (!results || results.length < 1) {
       return; // do nothing
     }
+
     let currentTab = results[0];
+
+    if (currentTab.url.startsWith('about')) {
+      return;
+    }
+
     browser.tabs.create({
       cookieStoreId: context.cookieStoreId,
       index: currentTab.index + 1,
+      discarded: true,
       url: currentTab.url
     });
     browser.tabs.remove(currentTab.id);
