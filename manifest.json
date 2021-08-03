@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Easy Container Shortcuts",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Easy, opinionated, keyboard shortcuts for containers.",
   "applications": {
     "gecko": {
@@ -148,6 +148,76 @@
         "default": "Ctrl+Alt+9"
       },
       "description": "Reopen the current tab on the ninth non-default container"
+    },
+    "ecs-new-window-current-container": {
+      "suggested_key": {
+        "default": "Alt+Shift+T",
+        "mac": "MacCtrl+Shift+T"
+      },
+      "description": "Open a new window on the current container"
+    },
+    "ecs-new-window-container-1": {
+      "suggested_key": {
+        "default": "Alt+Shift+1",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "Open a window on the first non-default container"
+    },
+    "ecs-new-window-container-2": {
+      "suggested_key": {
+        "default": "Alt+Shift+2",
+        "mac": "MacCtrl+Shift+2"
+      },
+      "description": "Open a window on the second non-default container"
+    },
+    "ecs-new-window-container-3": {
+      "suggested_key": {
+        "default": "Alt+Shift+3",
+        "mac": "MacCtrl+Shift+3"
+      },
+      "description": "Open a window on the third non-default container"
+    },
+    "ecs-new-window-container-4": {
+      "suggested_key": {
+        "default": "Alt+Shift+4",
+        "mac": "MacCtrl+Shift+4"
+      },
+      "description": "Open a window on the fourth non-default container"
+    },
+    "ecs-new-window-container-5": {
+      "suggested_key": {
+        "default": "Alt+Shift+5",
+        "mac": "MacCtrl+Shift+5"
+      },
+      "description": "Open a window on the fifth non-default container"
+    },
+    "ecs-new-window-container-6": {
+      "suggested_key": {
+        "default": "Alt+Shift+6",
+        "mac": "MacCtrl+Shift+6"
+      },
+      "description": "Open a window on the sixth non-default container"
+    },
+    "ecs-new-window-container-7": {
+      "suggested_key": {
+        "default": "Alt+Shift+7",
+        "mac": "MacCtrl+Shift+7"
+      },
+      "description": "Open a window on the seventh non-default container"
+    },
+    "ecs-new-window-container-8": {
+      "suggested_key": {
+        "default": "Alt+Shift+8",
+        "mac": "MacCtrl+Shift+8"
+      },
+      "description": "Open a window on the eighth non-default container"
+    },
+    "ecs-new-window-container-9": {
+      "suggested_key": {
+        "default": "Alt+Shift+9",
+        "mac": "MacCtrl+Shift+9"
+      },
+      "description": "Open a window on the ninth non-default container"
     }
   }
 }

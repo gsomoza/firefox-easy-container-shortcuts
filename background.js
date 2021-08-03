@@ -12,6 +12,11 @@ function onContainerCommand(command) {
     return;
   }
 
+  if (command === 'ecs-new-window-current-container') {
+    openWindowInCurrentContainer();
+    return;
+  }
+
   const newTabMatches = command.match(/^ecs-new-tab-container-(\d)$/);
   if (newTabMatches && newTabMatches.length == 2) {
     openContainerTab(parseInt(newTabMatches[1]) - 1);
@@ -21,6 +26,12 @@ function onContainerCommand(command) {
   const currentTabMatches = command.match(/^ecs-current-tab-container-(\d)$/);
   if (currentTabMatches && currentTabMatches.length == 2) {
     openTabInContainer(parseInt(currentTabMatches[1]) - 1);
+    return;
+  }
+
+  const newWindowMatches = command.match(/^ecs-new-window-container-(\d)$/);
+  if (newWindowMatches && newWindowMatches.length === 2) {
+    openContainerWindow(parseInt(newWindowMatches[1]) - 1);
     return;
   }
 }
@@ -55,6 +66,16 @@ async function openTabInCurrentContainer() {
   });
 }
 
+async function openWindowInCurrentContainer() {
+  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
+    if (!results || results.length < 1) {
+      return;
+    }
+    let currentTab = results[0];
+    browser.windows.create({cookieStoreId: currentTab.cookieStoreId});
+  });
+}
+
 async function openContainerTab(contextNumber) {
   let context = await getContextFor(contextNumber);
   if (!context) {
@@ -62,6 +83,17 @@ async function openContainerTab(contextNumber) {
   }
 
   return browser.tabs.create({
+    cookieStoreId: context.cookieStoreId
+  });
+}
+
+async function openContainerWindow(contextNumber) {
+  let context = await getContextFor(contextNumber);
+  if (!context) {
+    return;
+  }
+
+  return browser.windows.create({
     cookieStoreId: context.cookieStoreId
   });
 }
