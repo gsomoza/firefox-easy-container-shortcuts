@@ -87,7 +87,8 @@ async function openTabInContainer(contextNumber) {
     browser.tabs.create({
       cookieStoreId: context.cookieStoreId,
       index: currentTab.index + 1,
-      url: currentTab.url
+      url: currentTab.url,
+      pinned: currentTab.pinned
     });
     browser.tabs.remove(currentTab.id);
   });
