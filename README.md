@@ -24,7 +24,7 @@ To re-open the current tab on the default container use `Ctrl (Cmd on Mac) + Alt
 #### New Window on Current Container
 Use `Alt (Ctrl on Mac) + Shift + T` to open a new window using the current container.
 
-### New Window on Specified Container
+#### New Window on Specified Container
 By default the extension registers the following shortcuts: `Alt (Ctrl on Mac) + Shift + #`, where `#` stands for numbers between 1 and 9. To open a new window without a container simply use the default Firefox shortcut for that (`Ctrl + N`).
 
 ## Custom Shortcuts
