@@ -21,6 +21,12 @@ For this to work, the `privacy.userContext.enabled` preference (the "Enable Cont
 #### Reopen Current Tab in Default Container
 To re-open the current tab on the default container use `Ctrl (Cmd on Mac) + Alt + #`. Special thanks to [@zanona](https://github.com/zanona).
 
+#### New Window on Current Container
+Use `Alt (Ctrl on Mac) + Shift + T` to open a new window using the current container.
+
+#### New Window on Specified Container
+By default the extension registers the following shortcuts: `Alt (Ctrl on Mac) + Shift + #`, where `#` stands for numbers between 1 and 9. To open a new window without a container simply use the default Firefox shortcut for that (`Ctrl + N`).
+
 ## Custom Shortcuts
 You can map any of the commands in this extension into other key combinations supported by Firefox - watch [this screencast](https://bug1303384.bmoattachments.org/attachment.cgi?id=9051647) to see how.
 
