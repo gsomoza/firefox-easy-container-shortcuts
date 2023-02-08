@@ -87,7 +87,6 @@ async function openTabInContainer(contextNumber) {
     browser.tabs.create({
       cookieStoreId: context.cookieStoreId,
       index: currentTab.index + 1,
-      discarded: true,
       url: currentTab.url,
       pinned: currentTab.pinned
     });
