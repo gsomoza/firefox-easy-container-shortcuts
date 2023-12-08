@@ -7,12 +7,12 @@ function debug(message) {
 }
 
 function onContainerCommand(command) {
-  if (command == 'ecs-new-tab-current-container') {
+  if (command == "ecs-new-tab-current-container") {
     openTabInCurrentContainer();
     return;
   }
 
-  if (command === 'ecs-new-window-current-container') {
+  if (command === "ecs-new-window-current-container") {
     openWindowInCurrentContainer();
     return;
   }
@@ -57,23 +57,27 @@ async function getContextFor(contextNumber) {
 }
 
 async function openTabInCurrentContainer() {
-  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
-    if (!results || results.length < 1) {
-      return; // do nothing
-    }
-    let currentTab = results[0];
-    browser.tabs.create({cookieStoreId: currentTab.cookieStoreId});
-  });
+  browser.tabs
+    .query({ currentWindow: true, active: true })
+    .then(function (results) {
+      if (!results || results.length < 1) {
+        return; // do nothing
+      }
+      let currentTab = results[0];
+      browser.tabs.create({ cookieStoreId: currentTab.cookieStoreId });
+    });
 }
 
 async function openWindowInCurrentContainer() {
-  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
-    if (!results || results.length < 1) {
-      return;
-    }
-    let currentTab = results[0];
-    browser.windows.create({cookieStoreId: currentTab.cookieStoreId});
-  });
+  browser.tabs
+    .query({ currentWindow: true, active: true })
+    .then(function (results) {
+      if (!results || results.length < 1) {
+        return;
+      }
+      let currentTab = results[0];
+      browser.windows.create({ cookieStoreId: currentTab.cookieStoreId });
+    });
 }
 
 async function openContainerTab(contextNumber) {
@@ -83,7 +87,7 @@ async function openContainerTab(contextNumber) {
   }
 
   return browser.tabs.create({
-    cookieStoreId: context.cookieStoreId
+    cookieStoreId: context.cookieStoreId,
   });
 }
 
@@ -94,36 +98,49 @@ async function openContainerWindow(contextNumber) {
   }
 
   return browser.windows.create({
-    cookieStoreId: context.cookieStoreId
+    cookieStoreId: context.cookieStoreId,
   });
 }
 
 async function openTabInContainer(contextNumber) {
-    let context = contextNumber !== -1 ? await getContextFor(contextNumber) : {};
+  let context = contextNumber !== -1 ? await getContextFor(contextNumber) : {};
 
   if (!context) {
     return;
   }
 
-  browser.tabs.query({currentWindow:true, active:true, status:'complete'}).then(function(results) {
-    if (!results || results.length < 1) {
-      return; // do nothing
-    }
+  browser.tabs
+    .query({ currentWindow: true, active: true, status: "complete" })
+    .then(async function (results) {
+      if (!results || results.length < 1) {
+        return; // do nothing
+      }
 
-    let currentTab = results[0];
+      let currentTab = results[0];
 
-    if (currentTab.url.startsWith('about')) {
-      return;
-    }
+      if (currentTab.url.startsWith("about")) {
+        return;
+      }
 
-    browser.tabs.create({
-      cookieStoreId: context.cookieStoreId,
-      index: currentTab.index + 1,
-      url: currentTab.url,
-      pinned: currentTab.pinned
+      let newTab = await browser.tabs.create({
+        cookieStoreId: context.cookieStoreId,
+        index: currentTab.index + 1,
+        url: currentTab.url,
+        pinned: currentTab.pinned,
+      });
+
+      // Open the new tab immediately, without waiting for the current tab to finish loading
+      browser.webNavigation.onBeforeNavigate.addListener(
+        function onBeforeNavigate(details) {
+          if (details.tabId === newTab.id) {
+            browser.webNavigation.onBeforeNavigate.removeListener(
+              onBeforeNavigate
+            );
+            browser.tabs.remove(currentTab.id);
+          }
+        }
+      );
     });
-    browser.tabs.remove(currentTab.id);
-  });
 }
 
 // [COMMANDS] register commands
