@@ -99,7 +99,7 @@ async function openContainerWindow(contextNumber) {
 }
 
 async function openTabInContainer(contextNumber) {
-    let context = contextNumber !== -1 ? await getContextFor(contextNumber) : {};
+  let context = contextNumber !== -1 ? await getContextFor(contextNumber) : {};
 
   if (!context) {
     return;
@@ -112,14 +112,14 @@ async function openTabInContainer(contextNumber) {
 
     let currentTab = results[0];
 
-    if (currentTab.url.startsWith('about')) {
+    if (currentTab.url.startsWith('about') && currentTab.url !== 'about:newtab') {
       return;
     }
 
     browser.tabs.create({
       cookieStoreId: context.cookieStoreId,
       index: currentTab.index + 1,
-      url: currentTab.url,
+      url: currentTab.url.startsWith('about') ? undefined : currentTab.url,
       pinned: currentTab.pinned
     });
     browser.tabs.remove(currentTab.id);
