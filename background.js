@@ -99,13 +99,13 @@ async function openContainerWindow(contextNumber) {
 }
 
 async function openTabInContainer(contextNumber) {
-    let context = contextNumber !== -1 ? await getContextFor(contextNumber) : {};
+  let context = contextNumber !== -1 ? await getContextFor(contextNumber) : {};
 
   if (!context) {
     return;
   }
 
-  browser.tabs.query({currentWindow:true, active:true, status:'complete'}).then(function(results) {
+  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
     if (!results || results.length < 1) {
       return; // do nothing
     }
