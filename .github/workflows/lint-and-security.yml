@@ -6,7 +6,7 @@ on:
 
 jobs:
   lint-and-security:
-    runs-on:  ubuntu-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache:  'npm'
+          cache: 'npm'
       
       - name: Install dependencies
         run: npm ci
