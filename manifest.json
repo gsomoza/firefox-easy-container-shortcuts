@@ -1,13 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Easy Container Shortcuts",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Easy, opinionated, keyboard shortcuts for containers.",
-  "applications": {
-    "gecko": {
-      "id": "firefox.container-shortcuts@strategery.io"
-    }
-  },
   "icons": {
     "48": "assets/icon.svg"
   },
@@ -16,6 +11,14 @@
     "contextualIdentities",
     "cookies"
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "firefox.container-shortcuts@strategery.io",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "background": {
     "scripts": ["background.js"]
   },
