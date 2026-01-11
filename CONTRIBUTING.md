@@ -115,17 +115,16 @@ Committ messages should follow [conventional commits](https://www.conventionalco
 
 Mozilla's [web-ext](https://extensionworkshop. com/documentation/develop/getting-started-with-web-ext/) tool provides a better development experience:
 
-1. **Install web-ext globally**
+1. **Install web-ext**
 
    ```bash
-   npm install -g web-ext
+   npm install
    ```
 
 2. **Run the extension**
 
    ```bash
-   cd firefox-easy-container-shortcuts
-   web-ext run
+   npx web-ext run
    ```
 
    This launches Firefox with the extension pre-loaded and automatically reloads it when you make changes.
@@ -133,7 +132,7 @@ Mozilla's [web-ext](https://extensionworkshop. com/documentation/develop/getting
 3. **Lint the extension**
 
    ```bash
-   web-ext lint
+   npx web-ext lint
    ```
 
 #### Temporary Installation (Alternative)
