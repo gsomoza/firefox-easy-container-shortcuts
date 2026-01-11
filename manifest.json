@@ -16,6 +16,13 @@
     "contextualIdentities",
     "cookies"
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "background": {
     "scripts": ["background.js"]
   },
