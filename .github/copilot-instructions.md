@@ -74,11 +74,11 @@ This launches Firefox with the extension loaded and auto-reloads on file changes
 1. Load the extension (see "Running the Extension Locally")
 2. Create multiple containers in Firefox
 3. Test keyboard shortcuts (see README.md for full list):
-   - `Ctrl+Shift+#` (1-9): Open new tab in container #
-   - `Ctrl+Alt+#` (0-9): Reopen current tab in container #
-   - `Ctrl+Alt+T`: Open new tab in current container
-   - `Alt+Shift+T`: Open new window in current container
-   - Mac: Use `Alt` instead of `Ctrl` for Shift combinations, `MacCtrl` for window commands
+   - `Ctrl+Shift+#` (1-9): Open new tab in container # (Mac: `Alt+Shift+#`)
+   - `Ctrl+Alt+#` (0-9): Reopen current tab in container # (same on Mac)
+   - `Ctrl+Alt+T`: Open new tab in current container (same on Mac)
+   - `Alt+Shift+T`: Open new window in current container (Mac: `MacCtrl+Shift+T`)
+   - `Alt+Shift+#` (1-9): Open new window in container # (Mac: `MacCtrl+Shift+#`)
 4. Check `about:debugging` → Inspect → Console for errors
 
 ## CI/CD Pipeline
@@ -128,12 +128,12 @@ firefox-easy-container-shortcuts/
 
 ### Key Files
 
-**`manifest.json`** - Extension configuration (227 lines)
+**`manifest.json`** - Extension configuration (226 lines)
 - Defines all keyboard shortcuts (commands section)
 - Declares required permissions: `tabs`, `contextualIdentities`, `cookies`
 - Contains extension metadata (name, version, description, icons)
 - Uses manifest_version 2
-- All shortcuts follow pattern: `ecs-{action}-{target}`
+- All shortcuts follow pattern: `ecs-{action}-{target}` with optional `-{number}` suffix
 
 **`background.js`** - Core extension logic (131 lines)
 - Background script that runs continuously
@@ -168,12 +168,12 @@ firefox-easy-container-shortcuts/
 - Meaningful variable names (e.g., `contextNumber`, `currentTab`)
 
 ### Command Naming Convention
-All commands follow: `ecs-{action}-{target}-{number}`
-- `ecs-new-tab-container-1` through `ecs-new-tab-container-9`
-- `ecs-current-tab-container-0` through `ecs-current-tab-container-9`
-- `ecs-new-window-container-1` through `ecs-new-window-container-9`
-- `ecs-new-tab-current-container`
-- `ecs-new-window-current-container`
+All commands follow: `ecs-{action}-{target}` with optional `-{number}` for specific containers:
+- `ecs-new-tab-container-1` through `ecs-new-tab-container-9` (numbered containers)
+- `ecs-current-tab-container-0` through `ecs-current-tab-container-9` (numbered containers)
+- `ecs-new-window-container-1` through `ecs-new-window-container-9` (numbered containers)
+- `ecs-new-tab-current-container` (current container, no number)
+- `ecs-new-window-current-container` (current container, no number)
 
 ### Container Indexing
 - Container numbers 1-9 map to array indices 0-8
@@ -197,9 +197,11 @@ All commands follow: `ecs-{action}-{target}-{number}`
 - Both are gitignored
 
 ### Platform Differences
-- Windows/Linux use `Ctrl` for most shortcuts
-- macOS uses `Alt` (⌥) and `MacCtrl` (⌃) depending on command type
-- Manifest supports platform-specific key bindings
+- New tab shortcuts: Windows/Linux use `Ctrl+Shift+#`, macOS uses `Alt+Shift+#`
+- Reopen current tab shortcuts: All platforms use `Ctrl+Alt+#`
+- New window shortcuts: Windows/Linux use `Alt+Shift+#`, macOS uses `MacCtrl+Shift+#`
+- Current container shortcuts: `Ctrl+Alt+T` (all platforms) for tabs, `Alt+Shift+T` (Windows/Linux) or `MacCtrl+Shift+T` (Mac) for windows
+- Manifest supports platform-specific key bindings via "mac" property
 
 ### Extension Limitations
 - Cannot reopen tabs starting with `about:` (except `about:newtab`)
