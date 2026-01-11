@@ -44,42 +44,13 @@ notices         0
 warnings        0
 ```
 
-### Building (Optional)
-
-To create a distributable .zip package:
-```bash
-npx web-ext build
-```
-
-Output is saved to `web-ext-artifacts/` directory (gitignored).
-
 ### Running the Extension Locally
 
-**For development with auto-reload:**
-```bash
-npx web-ext run
-```
-
-This launches Firefox with the extension loaded and auto-reloads on file changes. Note: This requires Firefox to be installed and may not work in CI environments.
-
-**Alternative - Manual Load:**
-1. Open Firefox → `about:debugging`
-2. Click "This Firefox" → "Load Temporary Add-on..."
-3. Select `manifest.json` from the repository root
-4. Ensure Container Tabs are enabled in Firefox preferences (`privacy.userContext.enabled`)
+You should never do this. Running the extension locally requires Firefox to be installed, so it will not work in CI environments.
 
 ### Testing
 
-**No automated tests exist.** All testing is manual:
-1. Load the extension (see "Running the Extension Locally")
-2. Create multiple containers in Firefox
-3. Test keyboard shortcuts (see README.md for full list):
-   - `Ctrl+Shift+#` (1-9): Open new tab in container # (Mac: `Alt+Shift+#`)
-   - `Ctrl+Alt+#` (0-9): Reopen current tab in container # (same on Mac)
-   - `Ctrl+Alt+T`: Open new tab in current container (same on Mac)
-   - `Alt+Shift+T`: Open new window in current container (Mac: `MacCtrl+Shift+T`)
-   - `Alt+Shift+#` (1-9): Open new window in container # (Mac: `MacCtrl+Shift+#`)
-4. Check `about:debugging` → Inspect → Console for errors
+**No automated tests exist.** All testing is manual.
 
 ## CI/CD Pipeline
 
@@ -128,14 +99,14 @@ firefox-easy-container-shortcuts/
 
 ### Key Files
 
-**`manifest.json`** - Extension configuration (226 lines)
+**`manifest.json`** - Extension configuration
 - Defines all keyboard shortcuts (commands section)
 - Declares required permissions: `tabs`, `contextualIdentities`, `cookies`
 - Contains extension metadata (name, version, description, icons)
 - Uses manifest_version 2
 - All shortcuts follow pattern: `ecs-{action}-{target}` with optional `-{number}` suffix
 
-**`background.js`** - Core extension logic (130 lines)
+**`background.js`** - Core extension logic
 - Background script that runs continuously
 - Listens to keyboard commands via `browser.commands.onCommand`
 - Main function: `onContainerCommand(command)` - Routes commands to appropriate handlers
@@ -147,7 +118,7 @@ firefox-easy-container-shortcuts/
 - Error handling via `onError()` and console logging
 
 **`package.json`** - Project configuration
-- Single dev dependency: `web-ext@^8.3.0`
+- Single dev dependency: `web-ext`
 - Single npm script: `lint` → runs `web-ext lint`
 
 ### WebExtensions APIs Used
@@ -164,7 +135,7 @@ firefox-easy-container-shortcuts/
 - 2-space indentation
 - Semicolons required
 - Async/await with .then() chains for backward compatibility
-- Console logging for errors and debug messages
+- Console logging for errors and debug messages should be removed before production
 - Meaningful variable names (e.g., `contextNumber`, `currentTab`)
 
 ### Command Naming Convention
@@ -183,16 +154,12 @@ All commands follow: `ecs-{action}-{target}` with optional `-{number}` for speci
 ## Important Notes and Gotchas
 
 ### Dependencies
-- Only one production dependency: `web-ext` (dev dependency)
-- Installing dependencies updates package-lock.json license field automatically
-- **Always use `npm ci` in CI/CD** to avoid package-lock.json changes
-
-### Permissions Required
-- The extension requires `privacy.userContext.enabled` to be enabled in Firefox
-- If disabled, extension only logs errors (graceful degradation)
+- No production dependencies.
+- Only one dev dependency: `web-ext`
+- Except for when specifically adding/updating packages, **always use `npm ci` in CI/CD** to avoid package-lock.json changes
 
 ### File Artifacts
-- `web-ext-artifacts/` directory is created by `npx web-ext build`
+- `web-ext-artifacts/` directory is created by `npx web-ext build` - doesn't need to be used.
 - `node_modules/` contains npm packages
 - Both are gitignored
 
@@ -203,32 +170,22 @@ All commands follow: `ecs-{action}-{target}` with optional `-{number}` for speci
 - Current container shortcuts: `Ctrl+Alt+T` (all platforms) for tabs, `Alt+Shift+T` (Windows/Linux) or `MacCtrl+Shift+T` (Mac) for windows
 - Manifest supports platform-specific key bindings via "mac" property
 
-### Extension Limitations
-- Cannot reopen tabs starting with `about:` (except `about:newtab`)
-- If container doesn't exist for a shortcut number, command silently does nothing
-- Temporary installations removed when Firefox closes
-
 ## Validation Checklist
 
 Before submitting changes:
-1. ✓ Run `npm ci` (or `npm install` locally)
+1. ✓ Run `npm ci` (use `npm install` only if adding/updating dependencies)
 2. ✓ Run `npx web-ext lint` - must show 0 errors/warnings
 3. ✓ Run `npm audit --audit-level=moderate` - must show 0 vulnerabilities
-4. ✓ Test changes manually in Firefox (load extension via about:debugging)
-5. ✓ Verify all affected keyboard shortcuts still work
-6. ✓ Check browser console for errors (about:debugging → Inspect)
-7. ✓ Ensure package-lock.json changes (if any) are intentional
-8. ✓ Update README.md if adding new shortcuts or features
-9. ✓ Update manifest.json version if releasing
-10. ✓ Follow conventional commit format: `type: description`
+4. ✓ Ensure package-lock.json changes (if any) are intentional
+5. ✓ Update README.md if adding new shortcuts or features
+6. ✓ Update manifest.json version if releasing
+7. ✓ Follow "conventional commits" format: `[feat|fix|docs|style|refactor|perf|test|chore|build]: description`
 
 ## Quick Reference
 
 **Most common tasks:**
 - Install: `npm ci`
 - Lint: `npm run lint` or `npx web-ext lint`
-- Build package: `npx web-ext build`
-- Run with auto-reload: `npx web-ext run`
 - Security audit: `npm audit`
 
 **Remember:**
@@ -236,4 +193,4 @@ Before submitting changes:
 - No transpilation or bundling needed (plain JavaScript)
 - No test framework (manual testing only)
 - CI runs on Node 20.x
-- Always test in actual Firefox browser
+- Do NOT try to test in Firefox - the user will have to test manually
