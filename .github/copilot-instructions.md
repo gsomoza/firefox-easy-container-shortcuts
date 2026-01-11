@@ -135,7 +135,7 @@ firefox-easy-container-shortcuts/
 - Uses manifest_version 2
 - All shortcuts follow pattern: `ecs-{action}-{target}` with optional `-{number}` suffix
 
-**`background.js`** - Core extension logic (131 lines)
+**`background.js`** - Core extension logic (130 lines)
 - Background script that runs continuously
 - Listens to keyboard commands via `browser.commands.onCommand`
 - Main function: `onContainerCommand(command)` - Routes commands to appropriate handlers
