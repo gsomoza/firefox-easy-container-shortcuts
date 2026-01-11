@@ -118,7 +118,7 @@ Mozilla's [web-ext](https://extensionworkshop. com/documentation/develop/getting
 1. **Install web-ext**
 
    ```bash
-   npm install
+   npm ci
    ```
 
 2. **Run the extension**
