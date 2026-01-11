@@ -31,4 +31,4 @@ By default the extension registers the following shortcuts: `Alt (Ctrl on Mac) +
 You can map any of the commands in this extension into other key combinations supported by Firefox - watch [this screencast](https://bug1303384.bmoattachments.org/attachment.cgi?id=9051647) to see how.
 
 ## License
-© 2017-2020, Gabriel Somoza – License: 3-Clause BSD
+See [LICENSE.md](LICENSE.md)
