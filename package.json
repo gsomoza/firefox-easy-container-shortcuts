@@ -10,7 +10,7 @@
     "url": "https://github.com/gsomoza/firefox-easy-container-shortcuts.git"
   },
   "author": "Gabriel Somoza",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "web-ext": "^8.3.0"
   }
