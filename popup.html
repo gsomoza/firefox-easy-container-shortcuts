@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 280px;
+      padding: 8px;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+    }
+    #search {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      font-size: 13px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #container-list {
+      margin-top: 6px;
+    }
+    .container-item {
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .container-item:hover,
+    .container-item.selected {
+      background: #e8e8e8;
+    }
+    .container-color {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    .no-results {
+      padding: 6px 8px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="search" placeholder="Search containers..." autofocus>
+  <div id="container-list"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
