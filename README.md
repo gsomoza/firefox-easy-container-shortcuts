@@ -1,6 +1,12 @@
 # Easy Container shortcuts
 Firefox 57+ extension that provides nine easy keyboard shortcuts to open new tabs on different containers.
 
+## Installation
+
+The easiest way to install this extension is directly from the [Firefox Add-ons listing (AMO)](https://addons.mozilla.org/firefox/addon/easy-container-shortcuts/).
+
+For other installation methods (e.g. installing from a local file for testing or self-distribution), please refer to the [official Firefox documentation on installing add-ons](https://extensionworkshop.com/documentation/publish/install-self-distributed/).
+
 ## Usage
 
 #### New Tab on Current Container
