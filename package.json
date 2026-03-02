@@ -3,7 +3,7 @@
   "version": "1.7.0",
   "description": "Easy, opinionated, keyboard shortcuts for containers.",
   "scripts": {
-    "lint": "web-ext lint"
+    "lint": "NODE_OPTIONS=--no-deprecation web-ext lint"
   },
   "repository": {
     "type": "git",
@@ -12,6 +12,6 @@
   "author": "Gabriel Somoza",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "web-ext": "^8.3.0"
+    "web-ext": "^9.3.0"
   }
 }
