@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Easy Container Shortcuts",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Easy, opinionated, keyboard shortcuts for containers.",
   "icons": {
     "48": "assets/icon.svg"
