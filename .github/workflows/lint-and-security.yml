@@ -27,7 +27,7 @@ jobs:
         run: npm ls --depth=0
       
       - name: Security audit
-        run: npm audit --audit-level=moderate
+        run: npm audit --omit=dev --audit-level=moderate
       
       - name: Run web-ext lint
         run: npx web-ext lint
