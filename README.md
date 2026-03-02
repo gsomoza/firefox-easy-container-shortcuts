@@ -10,7 +10,7 @@ For other installation methods (e.g. installing from a local file for testing or
 ## Usage
 
 #### Search Containers
-Use `Ctrl + Shift + X` (or `Cmd + Shift + X` on Mac) to open a search popup where you can type the name of a container and open a new tab in it. Use the arrow keys to navigate the list and `Enter` to open a tab in the selected container. Use `Ctrl + Enter` (`Cmd + Enter` on Mac) to open in a new window instead.
+Use `Ctrl + Shift + X` to open a search popup where you can type the name of a container and open a new tab in it. Use the arrow keys to navigate the list and `Enter` to open a tab in the selected container. Use `Ctrl + Enter` to open in a new window instead.
 
 #### New Tab on Current Container
 Use `Ctrl (Cmd on Mac) + Alt + T` to open a new tab in the current window, using the current container.

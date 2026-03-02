@@ -65,6 +65,10 @@ function openWindowInContainer(container) {
   window.close();
 }
 
+document.getElementById('search').addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
 document.getElementById('search').addEventListener('input', () => {
   renderContainers(getFilteredContainers());
 });
