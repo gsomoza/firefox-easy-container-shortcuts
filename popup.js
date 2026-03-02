@@ -98,12 +98,12 @@ document.getElementById('search').addEventListener('keydown', (e) => {
 browser.contextualIdentities.query({}).then(containers => {
   allContainers = containers;
   renderContainers(containers);
-  document.getElementById('search').focus();
+  setTimeout(() => document.getElementById('search').focus(), 100);
 }).catch(() => {
   const list = document.getElementById('container-list');
   const msg = document.createElement('div');
   msg.className = 'no-results';
   msg.textContent = 'Containers are not available';
   list.appendChild(msg);
-  document.getElementById('search').focus();
+  setTimeout(() => document.getElementById('search').focus(), 100);
 });
