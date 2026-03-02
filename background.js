@@ -105,25 +105,24 @@ async function openTabInContainer(contextNumber) {
     return;
   }
 
-  browser.tabs.query({currentWindow:true, active:true}).then(function(results) {
-    if (!results || results.length < 1) {
-      return; // do nothing
-    }
+  let results = await browser.tabs.query({currentWindow:true, active:true});
+  if (!results || results.length < 1) {
+    return; // do nothing
+  }
 
-    let currentTab = results[0];
+  let currentTab = results[0];
 
-    if (currentTab.url.startsWith('about') && currentTab.url !== 'about:newtab') {
-      return;
-    }
+  if (currentTab.url.startsWith('about') && currentTab.url !== 'about:newtab') {
+    return;
+  }
 
-    browser.tabs.create({
-      cookieStoreId: context.cookieStoreId,
-      index: currentTab.index + 1,
-      url: currentTab.url.startsWith('about') ? undefined : currentTab.url,
-      pinned: currentTab.pinned
-    });
-    browser.tabs.remove(currentTab.id);
+  await browser.tabs.create({
+    cookieStoreId: context.cookieStoreId,
+    index: currentTab.index + 1,
+    url: currentTab.url.startsWith('about') ? undefined : currentTab.url,
+    pinned: currentTab.pinned
   });
+  await browser.tabs.remove(currentTab.id);
 }
 
 // [COMMANDS] register commands
