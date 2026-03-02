@@ -12,6 +12,6 @@
   "author": "Gabriel Somoza",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "web-ext": "^8.3.0"
+    "web-ext": "^9.3.0"
   }
 }
