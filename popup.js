@@ -38,7 +38,12 @@ function renderContainers(containers) {
 
 function getFilteredContainers() {
   const query = document.getElementById('search').value.toLowerCase();
-  return allContainers.filter(c => c.name.toLowerCase().includes(query));
+  if (!query) return allContainers;
+  return allContainers
+    .map(c => ({ c, lower: c.name.toLowerCase() }))
+    .filter(({ lower }) => lower.includes(query))
+    .sort((a, b) => (a.lower.startsWith(query) ? 0 : 1) - (b.lower.startsWith(query) ? 0 : 1))
+    .map(({ c }) => c);
 }
 
 function updateSelection(items) {
@@ -93,10 +98,12 @@ document.getElementById('search').addEventListener('keydown', (e) => {
 browser.contextualIdentities.query({}).then(containers => {
   allContainers = containers;
   renderContainers(containers);
+  document.getElementById('search').focus();
 }).catch(() => {
   const list = document.getElementById('container-list');
   const msg = document.createElement('div');
   msg.className = 'no-results';
   msg.textContent = 'Containers are not available';
   list.appendChild(msg);
+  document.getElementById('search').focus();
 });
