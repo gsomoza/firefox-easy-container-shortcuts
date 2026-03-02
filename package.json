@@ -1,6 +1,6 @@
 {
   "name": "firefox-easy-container-shortcuts",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Easy, opinionated, keyboard shortcuts for containers.",
   "scripts": {
     "lint": "NODE_OPTIONS=--no-deprecation web-ext lint"
