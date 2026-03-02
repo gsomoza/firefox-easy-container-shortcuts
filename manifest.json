@@ -19,10 +19,21 @@
       }
     }
   },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "assets/icon.svg",
+    "default_title": "Search Containers"
+  },
   "background": {
     "scripts": ["background.js"]
   },
   "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "MacCtrl+Shift+X"
+      }
+    },
     "ecs-new-tab-current-container": {
       "suggested_key": {
         "default": "Ctrl+Alt+T"
