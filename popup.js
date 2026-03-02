@@ -31,6 +31,9 @@ function renderContainers(containers) {
     item.addEventListener('click', () => openTabInContainer(container));
     list.appendChild(item);
   });
+
+  selectedIndex = 0;
+  updateSelection(list.querySelectorAll('.container-item'));
 }
 
 function getFilteredContainers() {
@@ -49,6 +52,11 @@ function updateSelection(items) {
 
 function openTabInContainer(container) {
   browser.tabs.create({ cookieStoreId: container.cookieStoreId });
+  window.close();
+}
+
+function openWindowInContainer(container) {
+  browser.windows.create({ cookieStoreId: container.cookieStoreId });
   window.close();
 }
 
@@ -73,7 +81,11 @@ document.getElementById('search').addEventListener('keydown', (e) => {
     e.preventDefault();
     const index = selectedIndex >= 0 ? selectedIndex : 0;
     if (filtered.length > 0) {
-      openTabInContainer(filtered[index]);
+      if (e.ctrlKey || e.metaKey) {
+        openWindowInContainer(filtered[index]);
+      } else {
+        openTabInContainer(filtered[index]);
+      }
     }
   }
 });
