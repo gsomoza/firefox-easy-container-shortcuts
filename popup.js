@@ -65,10 +65,6 @@ function openWindowInContainer(container) {
   window.close();
 }
 
-document.getElementById('search').addEventListener('contextmenu', (e) => {
-  e.preventDefault();
-});
-
 document.getElementById('search').addEventListener('input', () => {
   renderContainers(getFilteredContainers());
 });
@@ -90,7 +86,7 @@ document.getElementById('search').addEventListener('keydown', (e) => {
     e.preventDefault();
     const index = selectedIndex >= 0 ? selectedIndex : 0;
     if (filtered.length > 0) {
-      if (e.ctrlKey || e.metaKey) {
+      if (e.shiftKey) {
         openWindowInContainer(filtered[index]);
       } else {
         openTabInContainer(filtered[index]);
